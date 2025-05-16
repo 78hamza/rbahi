@@ -49,3 +49,6 @@ This version of Rbahi is a modern, scalable full-stack app built using **React +
 | Microservice | Python, FastAPI, Pandas, Scikit-learn |
 | Charts      | Chart.js / Recharts / Plotly.js        |
 | Forecasting | Prophet / Statsmodels / Custom models  |
+
+## what is a microservices:
+Microservices means building an application as a set of small, loosely coupled, independently deployable services, where each service handles one specific task and can be developed, deployed, and scaled independently.
