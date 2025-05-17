@@ -1,7 +1,7 @@
-import pkg from 'pg';
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
-dotenv.config({path : "/home/hamza-bouzian/rbahi/backend/.env"});
+
+dotenv.config();
 
 export const pool = new Pool({
     user: process.env.DB_USER,
@@ -11,11 +11,14 @@ export const pool = new Pool({
     database: process.env.DB_NAME
 });
 
+// Optional: cleaner query helper
+export const query = (text, params) => pool.query(text, params);
 
+// Test the connection
 pool.query("SELECT NOW()", (err, res) => {
     if (err) {
-        console.error("database connection failed", err);
-    }else{
-        console.log("connected to PostgreSQL at", res.rows[0].now);
+        console.error("❌ Database connection failed:", err);
+    } else {
+        console.log("✅ Connected to PostgreSQL at", res.rows[0].now);
     }
-})
+});
