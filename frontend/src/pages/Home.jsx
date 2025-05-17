@@ -10,7 +10,7 @@ export default function Home (){
                     Welcome to <span className='text-blue-600 mb-8'>Rbahi</span>
                 </h1>
                 <p className='text-base sm:text-lg md:text-xl text-gray-600 mb-8'>
-                    Your smart business to track, analyze, amin-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8nd grow with AI-powered insignts.
+                    Your smart business to track, analyze, grow with AI-powered insignts.
                 </p>
 
                 <Link

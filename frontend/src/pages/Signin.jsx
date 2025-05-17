@@ -26,6 +26,8 @@ export default function Signin() {
                     </div>
                     <div>
                         <label htmlFor="password">
+                            Password
+                        </label>
                             <input 
                                 type="password"
                                 name="password"
@@ -34,7 +36,6 @@ export default function Signin() {
                                 required
                                 className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                             />
-                        </label>
                     </div>
 
                     <div className="flex items-center justify-between text-sm">
