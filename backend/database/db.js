@@ -1,6 +1,5 @@
 const { Sequelize } = require("sequelize");
 const dotenv = require("dotenv");
-
 dotenv.config();
 
 const sequelize = new Sequelize(
@@ -11,12 +10,24 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: "postgres",
-    logging: false, // optional
+    logging: false,
   }
 );
 
+// Load models (make sure this comes AFTER `sequelize` is defined)
+require('../models/User');
+
+// Connect and sync
 sequelize.authenticate()
-  .then(() => console.log("✅ Connected to PostgreSQL via Sequelize"))
-  .catch(err => console.error("❌ Failed to connect with Sequelize:", err));
+  .then(() => {
+    console.log("✅ Connected to PostgreSQL via Sequelize");
+    return sequelize.sync({ alter: true });
+  })
+  .then(() => {
+    console.log("✅ Models synchronized with the database");
+  })
+  .catch(err => {
+    console.error("❌ Failed to connect or sync with Sequelize:", err);
+  });
 
 module.exports = sequelize;
