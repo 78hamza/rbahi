@@ -69,8 +69,9 @@ const SignIn = async (req, res) => {
         }
 
         // Générer un token JWT (penser à adapter user id, ici c'est user.id)
-        const token = jwt.sign({ userid: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        const token = jwt.sign({ id: user.id, email:user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
+        
         res.status(200).json({
             token,
             user: {
@@ -79,6 +80,7 @@ const SignIn = async (req, res) => {
                 email: user.email
             }
         });
+
     } catch (err) {
         console.log("Login error", err);
         res.status(500).json({ error: "Server error" });
