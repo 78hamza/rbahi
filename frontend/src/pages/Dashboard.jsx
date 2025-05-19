@@ -46,7 +46,7 @@ export default function Dashboard() {
             <Link to="#" className="text-gray-700 hover:text-blue-600">
               Dashboard
             </Link>
-            <Link to="#" className="text-gray-700 hover:text-blue-600">
+            <Link to="/fileUpload" className="text-gray-700 hover:text-blue-600">
               Upload Data
             </Link>
             <Link to="#" className="text-gray-700 hover:text-blue-600">

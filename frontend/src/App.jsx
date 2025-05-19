@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import SignUp from "./pages/Signup";
 import SignIn from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
+import UploadSection from "./components/fileUpload";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/fileUpload" element={<UploadSection/>} />
     </Routes>
   );
 }
