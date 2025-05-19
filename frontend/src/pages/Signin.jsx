@@ -33,6 +33,7 @@ export default function Signin() {
                 password:""
             })
             setErrorMessage("");
+            localStorage.setItem("token", response.data.token);
             navigate("/dashboard");
         }catch (err) {
             setErrorMessage("email or password invalid!");
@@ -48,7 +49,7 @@ export default function Signin() {
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 animate-gradient bg-size-200 px-4 sm:px-6 lg:px-8">
             <div className="bg-white bg-opacity-90 rounded-xl shadow-xl p-10 w-full max-w-md space-y-6">
                 <h2 className="text-3xl font-extrabold text-center text-gray-800">
-                    Sign In to <span className="text-blue-600">Rbahi</span>
+                    Sign In to <span className="text-blue-600"><a href="/"><span>Rbahi</span></a></span>
                 </h2>
 
                 <form className="space-y-5" onSubmit={handleSubmit}>
