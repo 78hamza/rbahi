@@ -69,7 +69,7 @@ const SignIn = async (req, res) => {
         }
 
         // Générer un token JWT (penser à adapter user id, ici c'est user.id)
-        const token = jwt.sign({ id: user.id, email:user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: user.id, email:user.email }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
         
         res.status(200).json({
