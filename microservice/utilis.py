@@ -10,9 +10,6 @@ def load_data(file):
     except Exception as e:
         raise ValueError(f"unsupported file format {str(e)}")
     
-
-        
-
     return df
 
 
