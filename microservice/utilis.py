@@ -31,7 +31,7 @@ def preprocess_data(df):
         if col not in df.columns:
             raise ValueError(f"Missing column: {col}" )
         
-    df = df[(df['quantity'] > 0 & df['unit_price'] > 0)]
+    df = df[(df['quantity'] > 0) & (df['unit_price'] > 0)]
 
     return df
 

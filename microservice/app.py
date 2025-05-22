@@ -12,6 +12,11 @@ app.logger.setLevel(logging.DEBUG)
 CORS(app)
 
 
+# testing the get method
+@app.route('/test', methods=['GET'])
+def testing():
+    return jsonify({"message" : "testing the end point on that port"}), 200
+
 @app.route('/api/upload', methods=['POST'])
 def upload_file():
     try:
