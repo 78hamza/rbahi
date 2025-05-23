@@ -1,0 +1,65 @@
+1. Comparison Charts
+Bar Chart: Compare values across categories (e.g., sales by region).
+
+Variants: Horizontal bar chart, stacked bar chart.
+
+Column Chart: Similar to a bar chart but vertical (e.g., monthly revenue).
+
+Bullet Chart: Compare a primary measure (e.g., sales) to a target or benchmark.
+
+2. Trend Analysis
+Line Chart: Show trends over time (e.g., stock prices, website traffic).
+
+Area Chart: Highlight trends while showing cumulative totals (e.g., revenue growth).
+
+Sparkline: Miniature line chart embedded in text/tables for quick trend visualization.
+
+3. Distribution Analysis
+Histogram: Display frequency distribution of continuous data (e.g., age groups).
+
+Box Plot (Whisker Plot): Visualize data spread, outliers, and quartiles (e.g., salary distribution).
+
+Violin Plot: Combine box plot and kernel density to show distribution shape.
+
+4. Composition Analysis
+Pie Chart: Show parts of a whole (e.g., market share by product). Best for ≤5 categories.
+
+Stacked Bar/Column Chart: Compare sub-categories within a total (e.g., sales by product and region).
+
+Treemap: Hierarchical data breakdown using nested rectangles (e.g., budget allocation by department).
+
+5. Relationship/Correlation
+Scatter Plot: Explore relationships between two variables (e.g., height vs. weight).
+
+Bubble Chart: Add a third dimension (size) to a scatter plot (e.g., GDP vs. population vs. CO2 emissions).
+
+Heatmap: Show correlation matrices or density (e.g., user activity by hour/day).
+
+6. Geospatial Data
+Choropleth Map: Color-coded regions to compare metrics (e.g., election results by state).
+
+Point Map: Plot data points on a geographic map (e.g., store locations).
+
+Flow Map: Show movement between locations (e.g., migration patterns).
+
+7. Hierarchical/Network Data
+Sunburst Chart: Multi-level pie chart for hierarchical data (e.g., organizational structure).
+
+Tree Diagram: Show parent-child relationships (e.g., file directory structure).
+
+Sankey Diagram: Visualize flows between stages (e.g., energy distribution, customer journey).
+
+8. Advanced Analytics
+Waterfall Chart: Track incremental changes (e.g., profit and loss statements).
+
+Funnel Chart: Analyze stages in a process (e.g., sales conversion rates).
+
+Gantt Chart: Track project timelines and task dependencies.
+
+9. Dashboards & Multi-Variable
+Dashboard: Combine multiple charts for an overview (e.g., business KPIs).
+
+Combination Chart: Mix chart types (e.g., line + bar for revenue vs. profit).
+
+Tools to Create These Charts
+Common Tools: Excel, Google Sheets, Tableau, Power BI, Python (Matplotlib, Seaborn), R (ggplot2), Looker.

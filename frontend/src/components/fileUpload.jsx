@@ -3,12 +3,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FiUploadCloud } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+
 
 const FileUploader = () => {
     const [file, setFile] = useState(null);
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -28,13 +31,14 @@ const FileUploader = () => {
         try {
             setLoading(true);
             setError("");
-            const response = await axios.post("http://localhost:7070/api/uploads", formData, {
+            const response = await axios.post("http://localhost:7071/api/upload", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
             });
 
             setResult(response.data.result);
+            navigate('/dashboard')
         } catch (err) {
             console.error("Upload error:", err);
             setError("Failed to analyze file.");
