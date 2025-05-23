@@ -2,7 +2,6 @@ const React = require("react");
 const express = require("express");
 const cors = require("cors");
 const authRoute = require("./routes/authRoute");
-const uploadRoute = require("./routes/uploadRoute");
 const dotenv = require("dotenv");
 const { Pool } = require('pg')
 dotenv.config();
@@ -19,7 +18,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoute);
-app.use("/api", uploadRoute);
+
 
 // default route for testing 
 // app.get("/", (req,res) => {
