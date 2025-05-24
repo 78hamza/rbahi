@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import {
   ResponsiveContainer,
@@ -72,17 +72,32 @@ export default function Dashboard() {
     return value.toFixed(2);
   };
 
+  // const handleProfileAccess = () => {
+  //   const navigate = useNavigate();
+  //   navigate('/dashboard/profile');
+  // };
+  const navigate = useNavigate();
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="w-full bg-white shadow-sm px-6 py-4 flex justify-between items-center border-b">
         <h1 className="text-2xl font-bold text-blue-600">Rbahi Dashboard</h1>
-        <button
-          onClick={handleLogOut}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-        >
-          Log out
-        </button>
+
+        <div className="flex gap-4">
+          <button
+            onClick={handleLogOut}
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+          >
+            Log out
+          </button>
+
+          <button
+            onClick={() => navigate("/dashboard/profile")}
+            className="bg-gray-100 hover:bg-gray-200 text-black px-4 py-2 rounded-lg shadow-sm transition-colors duration-200"
+          >
+            👤 Profile
+          </button>
+        </div>
       </header>
 
       {/* Body */}

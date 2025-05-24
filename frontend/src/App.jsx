@@ -4,6 +4,7 @@ import SignUp from "./pages/Signup";
 import SignIn from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import UploadSection from "./components/fileUpload";
+import UserProfile from "./pages/profile";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/fileUpload" element={<UploadSection/>} />
+      <Route path="/dashboard/profile" element={<UserProfile/>} />
     </Routes>
   );
 }
