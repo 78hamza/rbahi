@@ -2,6 +2,7 @@ const React = require("react");
 const express = require("express");
 const cors = require("cors");
 const authRoute = require("./routes/authRoute");
+const profileRoute = require('./routes/profileRoute');
 const dotenv = require("dotenv");
 const { Pool } = require('pg')
 dotenv.config();
@@ -9,7 +10,7 @@ dotenv.config();
 
 //  create the server
 const app = express();
-const PORT = 7070;
+const PORT = process.env.PORT || 7070;
 
 
 // malware
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoute);
+app.use("/api", profileRoute);
 
 
 // default route for testing 
