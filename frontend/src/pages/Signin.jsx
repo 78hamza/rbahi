@@ -28,12 +28,14 @@ export default function Signin() {
 
         try{
             const response = await axios.post("http://localhost:7070/api/auth/signin", formData);
+            const { token, user } = response.data;
             setFormData({
                 email:"",
                 password:""
             })
             setErrorMessage("");
-            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", user.id.toString());
             navigate("/dashboard");
         }catch (err) {
             setErrorMessage("email or password invalid!");
