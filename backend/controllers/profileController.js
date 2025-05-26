@@ -1,6 +1,6 @@
 const { where } = require('sequelize');
 const User = require('../models/User');
-
+const bcrypt = require('bcrypt')
 
 exports.getProfile = async (req, res) => {
     try{
@@ -51,3 +51,43 @@ exports.updateProfile = async (req, res) => {
     }
 }
 
+exports.changePassword = async (req, res) => {
+    try{
+
+        const { id } = req.params;
+        const { currentPassword, newPassword, confirmPassword }  = req.body;
+        
+        // get the user with password field
+        const user = await User.findByPk(id, {
+            attributes:['id', 'password']
+        });
+    
+        if (!user) return res.status(404).json( {error: "user not found in our system "});
+        
+        // check th length of the password
+        // if (newPassword.length < 8) {
+        //     return res.status(400).json({ error: "Password must be at least 8 characters"});
+        // }
+        // if (newPassword !== confirmPassword){
+        //     return res.status(400).json({ error: "Password do not match"})
+        // }
+        
+
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) return res.status(400).json({error: "incorrect current password"})
+    
+        const newPass = await bcrypt.hash(newPassword, 10);
+    
+        await User.update(
+            {password:newPass},
+            {where: { id} }
+        )
+
+    
+        res.json({ message: "password changed successfully"})
+    }catch (err) {
+        res.status(500).json({error: "password change error"});
+        console.error("password change error", err);
+    }
+    
+}
