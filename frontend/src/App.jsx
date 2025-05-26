@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import UploadSection from "./components/fileUpload";
 import UserProfile from "./pages/profile";
 
+
 export default function App() {
   return (
     <Routes>

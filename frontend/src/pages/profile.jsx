@@ -10,6 +10,7 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('personal');
   const [error, setError] = useState(null);
+  const [passwordError, setPasswordError] = useState('');
 
   const userId = localStorage.getItem('userId');
 
@@ -25,6 +26,12 @@ const UserProfile = () => {
   });
 
   const [tempData, setTempData] = useState(userData);
+  const [securityData, setSecurityData] = useState({
+    currentPassword : '',
+    newPassword : '',
+    confirmPassword: ''
+  });
+
 
   useEffect(() => {
     fetchUserData();
@@ -53,6 +60,51 @@ const UserProfile = () => {
       setLoading(false);
     }
   };
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+
+    if (securityData.newPassword !== securityData.confirmPassword) {
+      setPasswordError("new password don't match");
+      return;
+    }
+    // if (securityData.newPassword.length < 8){
+    //   setPasswordError("password must be more then 8 characters");
+    //   return;
+    // }
+
+    try{
+      setLoading(true);
+      setPasswordError('');
+
+      await axios.put(`http://localhost:7070/api/user/profile/password-change/${userId}`, {
+        currentPassword: securityData.currentPassword,
+        newPassword : securityData.newPassword
+      });
+      alert("password changed successfully");
+      setSecurityData({
+        currentPassword : '',
+        newPassword : '',
+        confirmPassword: ''
+      });
+
+      
+    }catch (err) {
+      console.error("error : ", err);
+      setPasswordError(err.response?.data?.error || "failed to change the password");
+    } finally{
+      setLoading(false);
+    }
+  }
+
+
+  const handleSecurityInputChange = (field, value) => {
+    setSecurityData(prev => ({
+      ...prev,
+      [field] :value
+    }));
+    setPasswordError("");
+  }
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -92,6 +144,9 @@ const UserProfile = () => {
     }));
   };
 
+
+
+ 
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -300,11 +355,60 @@ const UserProfile = () => {
               )}
 
               {/* Future tabs: security, preferences */}
-              {activeTab === 'security' && (
+              {activeTab === 'preferences' && (
                 <p className="text-sm text-gray-500">Security settings will be here.</p>
               )}
-              {activeTab === 'preferences' && (
-                <p className="text-sm text-gray-500">Preferences settings will be here.</p>
+              {activeTab === 'security' && (
+                <form onSubmit={handlePasswordChange} className="space-y-6">
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Current password
+                      </label>
+                      <input 
+                        type="password"
+                        required
+                        value={securityData.currentPassword}
+                        onChange={(e) => handleSecurityInputChange('currentPassword', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        New password
+                      </label>
+                      <input 
+                        type="password"
+                        required
+                        value={securityData.newPassword}
+                        onChange={(e) => {handleSecurityInputChange('newPassword', e.target.value)}} 
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Confirm New Password
+                      </label>
+                      <input 
+                        type="password"
+                        required
+                        value={securityData.confirmPassword}
+                        onChange={(e) => handleSecurityInputChange('confirmPassword', e.target.value)}
+                        className="w-full px-2 py-auto border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" 
+                      />
+                    </div>
+                    {passwordError && (
+                      <div className="text-red-600 text-sm mt-3">{passwordError}</div>
+                    )}
+
+                  </div>
+                  <button 
+                    type="submit"
+                    disabled={loading}
+                    className="x-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300">
+                      {loading ? "changing Password..." : "Change Password"}
+                  </button>
+                </form>
               )}
             </div>
           </div>
