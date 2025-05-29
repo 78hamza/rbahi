@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"; 
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
   ResponsiveContainer,
@@ -120,6 +121,7 @@ export default function Dashboard() {
                 onClick={() => console.log("navigate to dashboard")}
               >
                 <a href="/dashboard">📊 Dashboard</a> 
+   
               </button>
               <button
                 className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
@@ -129,9 +131,10 @@ export default function Dashboard() {
               </button>
               <button
                 className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
-                onClick={() => console.log('Navigate to analytics')}
+                onClick={() => console.log("navigate to advanced analytics")}
               >
-                📈 Advanced Analytics
+                <Link to="/dashboard/advanced-analytics">📈 Advanced Analytics</Link>
+                
               </button>
               <button
                 className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"

@@ -5,6 +5,7 @@ import SignIn from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import UploadSection from "./components/fileUpload";
 import UserProfile from "./pages/profile";
+import AdvancedAnalytics from "./pages/advancedAnalytics";
 
 
 export default function App() {
@@ -16,6 +17,8 @@ export default function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/fileUpload" element={<UploadSection/>} />
       <Route path="/dashboard/profile" element={<UserProfile/>} />
+      <Route path="/dashboard/advanced-analytics" element={<AdvancedAnalytics/>} />
+
     </Routes>
   );
 }
