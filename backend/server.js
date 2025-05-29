@@ -4,7 +4,8 @@ const cors = require("cors");
 const authRoute = require("./routes/authRoute");
 const profileRoute = require('./routes/profileRoute');
 const dotenv = require("dotenv");
-const { Pool } = require('pg')
+const { Pool } = require('pg');
+const { default: mongoose } = require("mongoose");
 dotenv.config();
 
 
@@ -31,6 +32,10 @@ app.get("/test", (req, res) =>{
     res.json({ message : "this is just a test"});
 })
 
+// mongoDB connection 
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser:true, useUnifiedTopology:true})
+    .then(() => console.log("✅  MongoDB connected"))
+    .catch((err) => console.log('MongoDB connection error: ', err))
 
 // start the server 
 app.listen(PORT, () => {
