@@ -4,7 +4,7 @@ const analyticsTools = [
     {
         name: 'Recommendation System',
         description: "Collaborative Filtering is a method used by recommender systems to make predictions about the interest of a specific user by collecting taste or preference information from many other users. .Get personalizeed product recommendation using collaborative filtering approach, based on your sales data.",
-        route: "/advanced-analytics/recommendation",
+        route: "/dashboard/advanced-analytics/recommendation",
         bg: "bg-gradient-to-r from-purple-500 to-indigo-600"
     },
     {
