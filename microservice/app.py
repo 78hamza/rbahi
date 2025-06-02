@@ -1,10 +1,23 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from pymongo import MongoClient
 from utilis import load_data, preprocess_data
 from train_model import train_model
 from predict import make_prediction
 from stats import generate_statistics
+from recommendationSystem.db import fetch_dataset_by_user
+from recommendationSystem.recommend import recommend_items_for_user
+import pandas as pd
+from dotenv import load_dotenv
+import os
 import logging
+
+# set up the mongodb connection
+load_dotenv()
+mongo_uri = os.getenv('MONGO_URI')
+client = MongoClient(mongo_uri)
+db = client['rbahi-users-datasets']
+collection = db['dataset']
 
 
 
@@ -80,6 +93,92 @@ def get_statistics():
         return jsonify(stats)
     except Exception as e:
         return jsonify({"error" : str(e)}), 500
+
+@app.route('/api/dataset/upload/recommend', methods=['POST'])
+def recommend():
+    try:
+        # Extract form data
+        company_id = request.form.get('userId')  # This is actually the company ID
+        created_at = request.form.get('created_at')
+        
+        if not company_id or not created_at:
+            return jsonify({"error": "Company ID and created_at are required"}), 400
+        
+        # Get uploaded dataset
+        dataset = request.files.get('dataset')
+        if not dataset:
+            return jsonify({"error": "No dataset uploaded"}), 400
+        
+        # Read dataset
+        try:
+            if dataset.filename.endswith('.csv'):
+                df = pd.read_csv(dataset)
+            elif dataset.filename.endswith(('.xlsx', '.xls')):
+                df = pd.read_excel(dataset)
+            else:
+                return jsonify({"error": "Unsupported file type"}), 400
+        except Exception as e:
+            return jsonify({"error": f"Failed to read file: {str(e)}"}), 400
+        
+        # Prepare document for MongoDB
+        records = df.to_dict(orient='records')
+        clean_data = [{str(k): str(v) for k, v in record.items()} for record in records]  # Convert all values to string
+        
+        document = {
+            "userId": company_id,
+            "created_at": created_at,
+            "filename": dataset.filename,
+            "rowcount": len(df),
+            "columns": list(df.columns),
+            "data": clean_data
+        }
+        
+        # Store in MongoDB
+        client = MongoClient(mongo_uri)
+        db = client['rbahi-users-datasets']
+        collection = db['dataset']
+        
+        try:
+            result = collection.insert_one(document)
+            dataset_id = str(result.inserted_id)
+            print(f"Data stored successfully. Dataset ID: {dataset_id}")
+        except Exception as e:
+            client.close()
+            return jsonify({"error": f"Database storage failed: {str(e)}"}), 500
+        
+        client.close()
+        
+        # Generate recommendations for all users in the dataset
+        all_recommendations = {}
+        
+        # Get unique end-user IDs from the dataset
+        if 'user_id' in df.columns:
+            end_user_ids = df['user_id'].unique().tolist()
+        else:
+            # If no user_id column, use a default
+            end_user_ids = ['default_user']
+        
+        # Generate recommendations for each end-user
+        for user_id in end_user_ids:
+            try:
+                recommendations = recommend_items_for_user(
+                    company_id=company_id,
+                    target_user_id=user_id
+                )
+                all_recommendations[user_id] = recommendations
+            except Exception as e:
+                print(f"Recommendation failed for user {user_id}: {str(e)}")
+                all_recommendations[user_id] = []
+        
+        return jsonify({
+            "dataset_id": dataset_id,
+            "rowCount": len(df),
+            "columns": list(df.columns),
+            "recommendations": all_recommendations
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 
 if __name__ == "__main__":
