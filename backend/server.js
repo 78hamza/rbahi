@@ -5,7 +5,6 @@ const authRoute = require("./routes/authRoute");
 const profileRoute = require('./routes/profileRoute');
 const dotenv = require("dotenv");
 const { Pool } = require('pg');
-const { default: mongoose } = require("mongoose");
 dotenv.config();
 
 
@@ -21,6 +20,7 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoute);
 app.use("/api", profileRoute);
+
 
 
 // default route for testing 
