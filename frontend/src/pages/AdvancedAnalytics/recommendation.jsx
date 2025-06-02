@@ -32,14 +32,14 @@ const RecommendationSystem =  () => {
 
         formData.append('dataset', file);
         formData.append('userId', userId);
-        formData.append('created_at', Date.now().toISOString());
+        formData.append('created_at', Date.now().toISOString);
 
         try{
             setStatus("Processing datset and generating recommendations...");
             setRecommendation(null);
 
             //singel call to the microservice 
-            const response = await axios.post('http://localhost:7071/api/dataset/upload', formData, {
+            const response = await axios.post('http://localhost:7071/api/dataset/upload/recommend', formData, {
                 headers: {
                     "Content-Type" : "multipart/form-data",
                 }, 
