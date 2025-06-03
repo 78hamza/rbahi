@@ -15,7 +15,7 @@ export default function Home (){
                 <nav className="flex gap-6">
                     <Link to="/" className="text-gray-700 hover:text-blue-600">Home</Link>
                     <Link to="/about" className="text-gray-700 hover:text-blue-600">About</Link>
-                    <Link to="/about" className="text-gray-700 hover:text-blue-600">Contact</Link>
+                    <Link to="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
                     <Link to="/signin" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
                     Sign In
                     </Link>

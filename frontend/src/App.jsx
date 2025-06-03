@@ -7,6 +7,7 @@ import UploadSection from "./components/fileUpload";
 import UserProfile from "./pages/profile";
 import AdvancedAnalytics from "./pages/AdvancedAnalytics/advancedAnalytics";
 import RecommendationSystem from "./pages/AdvancedAnalytics/recommendation";
+import Contact from "./pages/contact"
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <Route path="/dashboard/profile" element={<UserProfile/>} />
       <Route path="/dashboard/advanced-analytics" element={<AdvancedAnalytics/>} />
       <Route path="/dashboard/advanced-analytics/recommendation" element={<RecommendationSystem/>} />
+      <Route path="/contact" element={<Contact/>} />
     </Routes>
   );
 }
