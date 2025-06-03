@@ -16,6 +16,25 @@ import {
   Bar,
   Legend
 } from "recharts";
+import {
+  BarChart3,
+  Upload,
+  TrendingUp,
+  Settings,
+  LogOut,
+  User,
+  Menu,
+  X,
+  DollarSign,
+  Package,
+  Users,
+  Activity,
+  ChevronRight,
+  Calendar,
+  TrendingDown,
+  Eye,
+  Download
+} from "lucide-react";
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7f50', '#a29bfe', '#ff6b81', '#48dbfb', '#1dd1a1'];
 
@@ -72,6 +91,13 @@ export default function Dashboard() {
     }
     return value.toFixed(2);
   };
+  const menuItems = [
+    { icon: BarChart3, label: "Dashboard", href: "/dashboard", active: true },
+    { icon: Upload, label: "Upload Data", href: "/dashboard/fileUpload", active:true },
+    { icon: TrendingUp, label: "Advanced Analytics", href: "/dashboard/advanced-analytics", active:true },
+    { icon: Settings, label: "Settings", href: "/dashboard/settings", active:false }
+  ];
+
 
   // const handleProfileAccess = () => {
   //   const navigate = useNavigate();
@@ -81,70 +107,81 @@ export default function Dashboard() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="w-full bg-white shadow-sm px-6 py-4 flex justify-between items-center border-b">
-        <h1 className="text-2xl font-bold text-blue-600">Rbahi Dashboard</h1>
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200 shadow-sm">
+        <div className="px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <button
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            >
+              {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                <BarChart3 className="w-5 h-5 text-white" />
+              </div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Rbahi Dashboard
+              </h1>
+            </div>
+          </div>
 
-        <div className="flex gap-4">
-          <button
-            onClick={handleLogOut}
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-          >
-            Log out
-          </button>
-
-          <button
-            onClick={() => navigate("/dashboard/profile")}
-            className="bg-gray-100 hover:bg-gray-200 text-black px-4 py-2 rounded-lg shadow-sm transition-colors duration-200"
-          >
-            👤 Profile
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate("/dashboard/profile")}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-200 text-gray-700 hover:text-gray-900"
+            >
+              <User className="w-4 h-4" />
+              <span className="hidden sm:inline">Profile</span>
+            </button>
+            <button
+              onClick={handleLogOut}
+              className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="hidden sm:inline">Log out</span>
+            </button>
+          </div>
         </div>
       </header>
-
       {/* Body */}
       <div className="flex min-h-screen">
         {/* Sidebar */}
-        <aside
-          className={`bg-white shadow-lg w-64 min-h-full transition-transform duration-300 ${
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } md:translate-x-0 fixed md:static z-20`}
-        >
-          <div className="p-6">
+        <aside className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white/80 backdrop-blur-md border-r border-gray-200 transition-transform duration-300 ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        }`}>
+          <div className="p-6 pt-8">
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-blue-600">Menu</h2>
-              <hr className="mt-2 border-blue-100" />
+              <h2 className="text-lg font-semibold text-gray-800 mb-1">Navigation</h2>
+              <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
             </div>
             
-            <nav className="flex flex-col space-y-2">
-              <button
-                className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
-                onClick={() => console.log("navigate to dashboard")}
-              >
-                <a href="/dashboard">📊 Dashboard</a> 
-   
-              </button>
-              <button
-                className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
-                onClick={() => console.log('Navigate to upload')}
-              >
-                <a href="/fileUpload">📁 Upload Data</a>
-              </button>
-              <button
-                className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
-                onClick={() => console.log("navigate to advanced analytics")}
-              >
-                <Link to="/dashboard/advanced-analytics">📈 Advanced Analytics</Link>
-                
-              </button>
-              <button
-                className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
-                onClick={() => console.log('Navigate to settings')}
-              >
-                ⚙️ Settings
-              </button>
+            <nav className="space-y-2">
+              {menuItems.map((item, index) => (
+                <button
+                  key={index}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
+                    item.active 
+                      ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600 border border-blue-200" 
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                  }`}
+                  onClick={() => navigate(item.href)}
+                >
+                  <item.icon className={`w-5 h-5 ${item.active ? "text-blue-600" : "text-gray-400 group-hover:text-gray-600"}`} />
+                  <span className="font-medium">{item.label}</span>
+                  {item.active && <ChevronRight className="w-4 h-4 ml-auto text-blue-400" />}
+                </button>
+              ))}
             </nav>
           </div>
         </aside>
+       {isSidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 lg:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+
 
         {/* Main Content */}
         <div className="flex-1 p-6 md:ml-0">
@@ -330,7 +367,7 @@ export default function Dashboard() {
                 Upload a CSV or Excel file to see your data statistics and insights.
               </p>
               <button
-                onClick={() => console.log('Navigate to upload')}
+                onClick={() => navigate("/dashboard/fileUpload")}
                 className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors duration-200"
               >
                 Upload Data
