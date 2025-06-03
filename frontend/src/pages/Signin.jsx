@@ -33,7 +33,7 @@ export default function SignUp () {
             const { token, user } = response.data;
 
             localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem("userId", user.id.toString());
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
