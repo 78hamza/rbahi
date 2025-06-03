@@ -55,7 +55,7 @@ export default function Dashboard() {
   const handleLogOut = () => {
     localStorage.removeItem("token");
     // In a real app, this would navigate to signin
-    console.log("Logging out and should redirect to signin");
+    navigate("/signin")
   };
 
   const formatCurrency = (value) => {
