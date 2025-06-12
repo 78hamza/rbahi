@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"; 
+import Footer from "../components/copy";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
@@ -47,7 +48,7 @@ export default function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      // In a real app, this would navigate to signin
+      navigate('/signin')
       console.log("No token found, should redirect to signin");
     } else {
       console.log("user logged in!");
@@ -55,6 +56,7 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
+    
     const fetchStats = async () => {
       try {
         setLoading(true);
@@ -73,6 +75,7 @@ export default function Dashboard() {
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     // In a real app, this would navigate to signin
     navigate("/signin")
   };
@@ -381,7 +384,8 @@ export default function Dashboard() {
       <footer className="bg-white border-t mt-12 py-8">
         <div className="text-center">
           <div className="text-4xl mb-2"><img src="/home/hamza-bouzian/rbahi/frontend/src/assets/logo_icon.png" alt="Logo" /></div>
-          <p className="text-sm text-gray-500">© 2025 Rbahi Dashboard</p>
+          {/* <p className="text-sm text-gray-500">© 2025 Rbahi Dashboard</p> */}
+          <Footer />
         </div>
       </footer>
     </main>

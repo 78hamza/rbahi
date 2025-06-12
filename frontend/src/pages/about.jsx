@@ -1,6 +1,8 @@
 import React from 'react';
 import { Users, Target, Award, Heart, Lightbulb, Globe, ArrowRight, Star } from 'lucide-react';
 import { ChevronRight, BarChart3, Brain, TrendingUp, Sparkles, Zap } from 'lucide-react';
+import Header from '../components/Header';
+// import Footer from '../components/Footer';
 
 export default function About() {
     const teamMembers = [
@@ -55,37 +57,10 @@ export default function About() {
     ];
 
     return (
+        <>
+        <Header />
         <div className="min-h-screen bg-white">
-            <header className="relative z-50 w-full backdrop-blur-md bg-white/80 border-b border-white/20 shadow-lg">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                    <div className="flex items-center gap-2 group cursor-pointer">
-                        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-                            <Sparkles className="w-5 h-5 text-white" />
-                        </div>
-                        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            Rbahi
-                        </h1>
-                    </div>
-                    
-                    <nav className="flex items-center gap-8">
-                        <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                            <a href="/">Home</a> 
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-200"></span>
-                        </a>
-                        <a href="/about" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                            About
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-200"></span>
-                        </a>
-                        <a href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                            Contact
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-200"></span>
-                        </a>
-                        <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
-                            <a href="/signin">Sign In</a> 
-                        </button>
-                    </nav>
-                </div>
-            </header>
+        
 
             {/* Hero Section */}
             <div className="relative bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -184,7 +159,7 @@ export default function About() {
                 </div>
             </div>
 
-            {/* Team Section */}
+            {/* Team Section
             <div className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
@@ -214,7 +189,7 @@ export default function About() {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* CTA Section */}
             <div className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-indigo-700">
@@ -232,11 +207,12 @@ export default function About() {
                         how we can help bring your vision to life.
                     </p>
                     <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 inline-flex items-center space-x-2 shadow-lg">
-                        <span>Start Your Project</span>
+                        <a href="/contact"><span>Start Your Project</span></a>
                         <ArrowRight className="w-5 h-5" />
                     </button>
                 </div>
             </div>
         </div>
+        </>
     );
 }

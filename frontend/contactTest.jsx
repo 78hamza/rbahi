@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle, Settings } from 'lucide-react';
 import { ChevronRight, BarChart3, Brain, TrendingUp, Sparkles, Zap } from 'lucide-react';
-import Header from '../components/Header';
 
 export default function Contact() {
     const [isLoading, setIsLoading] = useState(false);
@@ -51,9 +50,6 @@ export default function Contact() {
         }
     };
     return (
-        <>
-        <Header />
-        <div className='bg-gray-400 py-9 rounded'></div>
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
                 {/* Header Section */}
@@ -223,7 +219,6 @@ export default function Contact() {
                 </div>
             </div>
         </div>
-        </>
     );
 
 }   
