@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, TrendingUp, BarChart3, Users, Shield } from "lucide-react";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import axios from 'axios'
 
 export default function SingnUp() {
@@ -123,10 +124,13 @@ export default function SingnUp() {
                     <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
                         {/* Header */}
                         <div className="text-center mb-8">
+                            <div className="flex mx-auto mt-4 mr-4">
+                                <a href="/"><FaArrowLeftLong className="text-blue-500 mt-1 mr-2 hover:text-blue-700"/></a><a href="/"><span className="text-blue-500 mr-2 mt-2 underline hover:text-blue-700">Return Home</span></a>
+                            </div>
                             <div className="lg:hidden flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-2xl mx-auto mb-4">
                                 <BarChart3 className="w-8 h-8 text-white" />
                             </div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-3 mt-5">
                                 Create your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Rbahi</span> account
                             </h2>
                             <p className="text-gray-600">Join thousands of businesses making data-driven decisions</p>

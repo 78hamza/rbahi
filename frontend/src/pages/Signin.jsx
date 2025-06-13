@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, BarChart3 } from 'lucide-react';
+import { FaArrowLeftLong } from "react-icons/fa6";
 import axios from 'axios';
 
 
@@ -106,7 +107,10 @@ export default function SignUp () {
                     </div>
 
                     <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                        <div className="text-center mb-8">
+                        <div className="flex mx-auto mt-4 mr-4">
+                            <a href="/"><FaArrowLeftLong className="text-blue-500 mt-1 mr-2 hover:text-blue-700"/></a><a href="/"><span className="text-blue-500 mr-2 mt-2 underline hover:text-blue-700">Return Home</span></a>
+                        </div>
+                        <div className="text-center mb-8 mt-4">
                             <h2 className="text-3xl font-bold text-gray-800 mb-2">
                                 Sign In to <span className="text-blue-600">Rbahi</span>
                             </h2>
