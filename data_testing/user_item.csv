@@ -1,0 +1,13 @@
+user_id,item_name,quantity
+u1,Apple,3
+u1,Banana,2
+u1,Orange,1
+u2,Apple,2
+u2,Banana,1
+u2,Carrot,5
+u3,Banana,2
+u3,Carrot,2
+u3,Orange,3
+u4,Carrot,2
+u4,Apple,1
+u4,Orange,2

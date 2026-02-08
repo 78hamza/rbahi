@@ -1,0 +1,9 @@
+Date,product,Category,quantity,unit_price,total
+2025-01-01,Shampoo,Personal Care,10,3.5,35.0
+2025-01-01,Bread,Food,20,1.2,24.0
+2025-01-02,Toothpaste,Personal Care,15,2.8,42.0
+2025-01-02,Milk,Food,30,1.5,45.0
+2025-01-03,Notebook,Stationery,5,4.0,20.0
+2025-01-03,Pen,Stationery,10,1.0,10.0
+2025-01-04,Banana,Food,25,0.5,12.5
+2025-01-04,Soap,Personal Care,12,1.8,21.6

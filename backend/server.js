@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const authRoute = require("./routes/authRoute");
 const profileRoute = require('./routes/profileRoute');
+const contactRoute = require('./routes/contactRoute');
 const dotenv = require("dotenv");
 const { Pool } = require('pg');
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoute);
 app.use("/api", profileRoute);
+app.use("/api", contactRoute);
 
 
 
@@ -32,10 +34,10 @@ app.get("/test", (req, res) =>{
     res.json({ message : "this is just a test"});
 })
 
-// mongoDB connection 
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser:true, useUnifiedTopology:true})
-    .then(() => console.log("✅  MongoDB connected"))
-    .catch((err) => console.log('MongoDB connection error: ', err))
+// // mongoDB connection 
+// mongoose.connect(process.env.MONGO_URI, {useNewUrlParser:true, useUnifiedTopology:true})
+//     .then(() => console.log("✅  MongoDB connected"))
+//     .catch((err) => console.log('MongoDB connection error: ', err))
 
 // start the server 
 app.listen(PORT, () => {
